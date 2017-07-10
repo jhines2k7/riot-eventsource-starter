@@ -4,14 +4,14 @@ export default class Storage {
     static set(events) {
         console.log('Added to storage', events);
 
-        localforage.setItem('rocket-scores', events).catch(function(err) {
+        localforage.setItem('my-event-sourced-app', events).catch(function(err) {
             // This code runs if there were any errors
             console.log(err);
         });
     }
 
     static get() {
-        return localforage.getItem('rocket-scores').then( (events) => {
+        return localforage.getItem('my-event-sourced-app').then( (events) => {
             // This code runs once the value has been loaded
             // from the offline store.
             if(events === null) {
@@ -25,11 +25,4 @@ export default class Storage {
             console.log(err);
         });
     }
-}
-
-function generateKey() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-        return v.toString(16);
-    });
 }
